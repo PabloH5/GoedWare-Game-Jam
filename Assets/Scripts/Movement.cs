@@ -1,48 +1,48 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class Movement : MonoBehaviour
 {
         private PlayerControllers _playerControllers;
         
-        public Vector2 direction;
+        private Vector2 _direction;
+        private float _verticalMovement;
+        private float _horizontalMovement;
     
         private Rigidbody2D rb;
         [SerializeField] private PlayerInput _playerInput;
         
         
-        [SerializeField] private float velMove;
+        private float _velMove;
 
-        private float _verticalMovement;
-        private float _horizontalMovement;
+        [SerializeField] private PlayerStats _playerStats;
 
         private void Awake()
         {
             _playerControllers = new ();
             rb = GetComponent<Rigidbody2D>();
+            _velMove = _playerStats.velMove;
         }
+        //Subscribe to the movements methods
         private void OnEnable()
         {
             _playerControllers.Enable();
+            //This for horizontal
             _playerControllers.PlayerMovement.MovementHorizontal.started += StartMoveHorizontal;
             _playerControllers.PlayerMovement.MovementHorizontal.canceled += CancelMoveHorizontal;
-            
+            //This for vertical
             _playerControllers.PlayerMovement.MovementVertical.started += StartMoveVertical;
             _playerControllers.PlayerMovement.MovementVertical.canceled += CancelMoveVertical;
             
         }
-        
+        //Unsubscribe to the movements methods
         private void OnDisable()
         {
             _playerControllers.Disable();
+            //This for horizontal
             _playerControllers.PlayerMovement.MovementHorizontal.started -= StartMoveHorizontal;
             _playerControllers.PlayerMovement.MovementHorizontal.canceled -= CancelMoveHorizontal;
-            
+            //This for vertical
             _playerControllers.PlayerMovement.MovementVertical.started -= StartMoveVertical;
             _playerControllers.PlayerMovement.MovementVertical.canceled -= CancelMoveVertical;
             
@@ -58,10 +58,6 @@ public class Movement : MonoBehaviour
             _verticalMovement = context.ReadValue<float>();
             UpdateDirection();
         }
-        private void UpdateDirection()
-        {
-            direction = new Vector2(_horizontalMovement, _verticalMovement);
-        }
         private void CancelMoveVertical(InputAction.CallbackContext context)
         {
             _verticalMovement = 0f;
@@ -72,9 +68,12 @@ public class Movement : MonoBehaviour
             _horizontalMovement = 0f;
             UpdateDirection();
         }
-
+        private void UpdateDirection()
+        {
+            _direction = new Vector2(_horizontalMovement, _verticalMovement);
+        }
         private void FixedUpdate()
         {
-            rb.velocity = new Vector2(direction.x * velMove, direction.y * velMove);
+            rb.velocity = new Vector2(_direction.x * _velMove, _direction.y * _velMove);
         }
 }
