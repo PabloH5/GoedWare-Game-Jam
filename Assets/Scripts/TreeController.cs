@@ -5,7 +5,12 @@ using UnityEngine;
 
 public class TreeController : MonoBehaviour
 {
+    [Header("Tree Scriptable Object")]
     [SerializeField] private TreesSo _treesValues;
+    
+    [Header("Default Max Stats")]
+    [SerializeField] private float _healthMax;
+    [SerializeField] private float _lootMax;
 
     [Header("Current Stats")] 
     [SerializeField] private float _health;
@@ -14,15 +19,27 @@ public class TreeController : MonoBehaviour
     
     [SerializeField] private bool _isFarming;
 
+    //Controllers
+    private Inventory _inventory;
     private PlayerStats _playerStats;
     private float _cdDamage =0;
     private void Awake()
     {
-        _health = _treesValues.health;
-        _lootAmount = _treesValues.lootAmount;
+        
+        _healthMax = _treesValues.health;
+        // _lootMax = _treesValues.lootAmount;
+
+        _health = _healthMax;
+        // _lootAmount = _lootMax;
+        
+        
         if (FindObjectOfType<PlayerStats>())
         {
             _playerStats = FindObjectOfType<PlayerStats>();
+        }
+        if (FindObjectOfType<Inventory>())
+        {
+            _inventory = FindObjectOfType<Inventory>();
         }
         
     }
@@ -35,6 +52,9 @@ public class TreeController : MonoBehaviour
             Debug.Log(_cdDamage);
             _cdDamage = 0;
             _health -= _playerStats.strength;
+            _inventory.woodAmount = _healthMax - _health;
+            // _lootAmount -= _playerStats.dropAmount * _lootMax;
+            // _inventory.woodAmount += _playerStats.dropAmount * _lootMax;
         }
     }
 

@@ -8,12 +8,14 @@ public class PlayerStats : MonoBehaviour
     public float velMove;
     public float strength;
     public float velAttack;
+    // public float dropAmount;
     
     [Header("Player Base Stats")]
     [SerializeField] private float _health;
     [SerializeField] private float _velMove;
     [SerializeField] private float _strength;
     [SerializeField] private float _velAttack;
+    // [SerializeField] private float _dropAmount;
 
     private void Awake()
     {
@@ -22,6 +24,7 @@ public class PlayerStats : MonoBehaviour
         velMove = _velMove;
         strength = _strength;
         velAttack = _velAttack;
+        // dropAmount = _dropAmount;
     }
     
     //Method for heal the player
@@ -47,5 +50,9 @@ public class PlayerStats : MonoBehaviour
     {
         velAttack = velAttack * incrementValue;
     }
+    // public void DropAmountUpgrade(float incrementValue)
+    // {
+    //     dropAmount = dropAmount * incrementValue;
+    // }
     
 }
