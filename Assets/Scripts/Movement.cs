@@ -11,9 +11,11 @@ public class Movement : MonoBehaviour
     
         private Rigidbody2D rb;
         [SerializeField] private PlayerInput _playerInput;
-        
+        [SerializeField] SpriteRenderer _spriteRenderer;
+        [SerializeField] Animator _animator;
         
         private float _velMove;
+        private Vector2 _speed;
 
         [SerializeField] private PlayerStats _playerStats;
 
@@ -75,5 +77,11 @@ public class Movement : MonoBehaviour
         private void FixedUpdate()
         {
             rb.velocity = new Vector2(_direction.x * _velMove, _direction.y * _velMove);
+            _speed = new Vector2(_direction.x, _direction.y).normalized;
+            _animator.SetFloat("Horizontal", _direction.x);
+            _animator.SetFloat("Vertical", _direction.y);
+            _animator.SetFloat("Speed", _speed.sqrMagnitude);
+            
+            
         }
 }
