@@ -53,18 +53,37 @@ public class UpgradeManager : MonoBehaviour
             _inventory = FindObjectOfType<Inventory>();
         }
     }
+    public void PurchaseHealthUpgrade()
+    {
+        PurchaseUpgradeSpecific(healthUpgrade, "Health");
+    }
 
+    public void PurchaseVelMoveUpgrade()
+    {
+        PurchaseUpgradeSpecific(velMoveUpgrade, "Velocity");
+    }
+
+    public void PurchaseStrengthUpgrade()
+    {
+        PurchaseUpgradeSpecific(strengthUpgrade, "Strength");
+    }
+
+    public void PurchaseVelAttackUpgrade()
+    {
+        PurchaseUpgradeSpecific(velAttackUpgrade, "Attack Speed");
+    }
     // Método para comprar una mejora
-    public bool PurchaseUpgrade(Upgrade upgrade)
+    private void PurchaseUpgradeSpecific(Upgrade upgrade, string upgradeName)
     {
         if (_inventory)
         {
             wood = _inventory.woodAmount;
         }
+
         if (upgrade.level >= upgrade.maxLevel)
         {
-            Debug.Log("Has alcanzado el nivel máximo de esta mejora.");
-            return false;
+            Debug.Log($"Has alcanzado el nivel máximo de la mejora: {upgradeName}.");
+            
         }
 
         int currentCost = upgrade.GetCurrentCost();
@@ -75,24 +94,24 @@ public class UpgradeManager : MonoBehaviour
             {
                 _inventory.woodAmount = wood;
             }
-            ApplyUpgrade(upgrade);
+            ApplyUpgrade(upgrade, upgradeName);
             upgrade.level++; // Incrementa el nivel de la mejora
-            Debug.Log($"Has comprado la mejora: {upgrade.upgradeName} al nivel {upgrade.level}");
-            return true;
+            Debug.Log($"Has comprado la mejora: {upgradeName} al nivel {upgrade.level}");
+            
         }
         else
         {
-            Debug.Log("No tienes suficiente oro para comprar esta mejora.");
-            return false;
+            Debug.Log("No tienes suficiente madera para comprar esta mejora.");
+            
         }
     }
 
     // Método para aplicar la mejora
-    private void ApplyUpgrade(Upgrade upgrade)
+    private void ApplyUpgrade(Upgrade upgrade, string upgradeName)
     {
         float incrementValue = upgrade.GetCurrentIncrementValue();
 
-        switch (upgrade.upgradeName)
+        switch (upgradeName)
         {
             case "Health":
                 _playerStats.HealthUpgrade(incrementValue);

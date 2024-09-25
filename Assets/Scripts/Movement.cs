@@ -75,5 +75,6 @@ public class Movement : MonoBehaviour
         private void FixedUpdate()
         {
             rb.velocity = new Vector2(_direction.x * _velMove, _direction.y * _velMove);
+            _velMove = _playerStats.velMove;
         }
 }
