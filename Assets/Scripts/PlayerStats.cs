@@ -47,5 +47,4 @@ public class PlayerStats : MonoBehaviour
     {
         velAttack = velAttack * incrementValue;
     }
-    
 }
