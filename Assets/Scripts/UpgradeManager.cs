@@ -15,7 +15,7 @@ public class Upgrade
     public float costMultiplier = 1.2f; //multiplier of cost
     public float valueMultiplier = 1.1f; //Multiplier of value
 
-    public int maxLevel = 10; // Max Lvl
+    public int maxLevel = 5; // Max Lvl
 
     public int GetCurrentCost()
     {
@@ -92,25 +92,29 @@ public class UpgradeManager : MonoBehaviour
             Debug.Log($"Reached the top level of upgrade: {upgradeName}.");
             
         }
-
-        int currentCost = upgrade.GetCurrentCost();
-        if (wood >= currentCost)
-        {
-            wood -= currentCost;
-            if (_inventory)
-            {
-                _inventory.woodAmount = wood;
-            }
-            ApplyUpgrade(upgrade, upgradeName);
-            upgrade.level++;
-            Debug.Log($"U buy: {upgradeName} at lvl {upgrade.level}");
-            
-        }
         else
         {
-            Debug.Log("Don't have enough wood to buy this upgrade.");
+            int currentCost = upgrade.GetCurrentCost();
+            if (wood >= currentCost)
+            {
+                wood -= currentCost;
+                if (_inventory)
+                {
+                    _inventory.woodAmount = wood;
+                }
+                ApplyUpgrade(upgrade, upgradeName);
+                upgrade.level++;
+                Debug.Log($"U buy: {upgradeName} at lvl {upgrade.level}");
             
+            }
+            else
+            {
+                Debug.Log("Don't have enough wood to buy this upgrade.");
+            
+            }
         }
+
+        
     }
 
     // Method for apply and update the purchased upgrade
