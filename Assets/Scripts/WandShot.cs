@@ -5,13 +5,24 @@ using UnityEngine;
 
 public class WandShot : MonoBehaviour
 {
-    public GameObject[] bulletPrefabs;
     public GameObject bulletPrefab; 
     public Transform firePoint;     
     public float bulletSpeed = 20f;
 
     [SerializeField]private PlayerStats _playerStats;
     private float _cdShoot;
+
+    public enum BulletsPref
+    {
+        DefaultBullet,
+        SpongeBullet,
+        HotDogBullet,
+        PoopBullet
+        
+    }
+    [Header("Switch the current bullet prefab")]
+    public BulletsPref bulletEnum;
+    public GameObject[] bulletPrefabs;
 
     private void Awake()
     {
@@ -30,11 +41,25 @@ public class WandShot : MonoBehaviour
             _cdShoot = 0;
             Shoot();
         }
+
+        SwitchBulletPrefab();
     }
 
     public void ApplyPowerUp()
     {
         
+    }
+
+    private void SwitchBulletPrefab()
+    {
+        bulletPrefab = bulletEnum switch
+        {
+            BulletsPref.DefaultBullet => bulletPrefabs[0],
+            BulletsPref.SpongeBullet => bulletPrefabs[1],
+            BulletsPref.HotDogBullet => bulletPrefabs[2],
+            BulletsPref.PoopBullet => bulletPrefabs[3],
+            _ => bulletPrefabs[0]
+        };
     }
 
     void Shoot()

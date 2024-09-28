@@ -1841,11 +1841,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40852acac6dfa9344ba8913bb054e3de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefabs: []
   bulletPrefab: {fileID: 7552711752403237570, guid: ff20c76ab5733d040a682cc2b4492c38, type: 3}
   firePoint: {fileID: 730866490}
   bulletSpeed: 20
   _playerStats: {fileID: 3414846630026264422}
+  bulletEnum: 0
+  bulletPrefabs:
+  - {fileID: 7552711752403237570, guid: ff20c76ab5733d040a682cc2b4492c38, type: 3}
+  - {fileID: 7552711752403237570, guid: 06dddca30f8acc84093e51075a2bbd62, type: 3}
+  - {fileID: 7552711752403237570, guid: 9b096842b76d46b479e9d52d5bb8c456, type: 3}
+  - {fileID: 7552711752403237570, guid: b8c7da24f47c0f34193c41041bcc651b, type: 3}
 --- !u!212 &1689913363
 SpriteRenderer:
   m_ObjectHideFlags: 0
