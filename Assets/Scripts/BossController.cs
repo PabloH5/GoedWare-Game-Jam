@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class BossController : MonoBehaviour
 {
     [Header("Boss Current Stats")]
@@ -15,74 +14,109 @@ public class BossController : MonoBehaviour
     [SerializeField] private float _health;
     [SerializeField] private float _velAttack;
     [SerializeField] private float _damage;
+    
+    [Header("Shoot")]
+    public GameObject bulletPrefab; 
+    public Transform firePoint;     
+    public float bulletSpeed = 20f;
+    private float _cdShoot;
 
     [Header("Boss Debuffs")] 
-    [SerializeField] private bool _isStunt;
     [SerializeField] private float _stuntTime;
-    
+    [SerializeField] private bool _isStunt;
     [SerializeField] private bool _isPoop;
-
-
-    private float _debuffTime=0;
-    private PlayerStats _playerStats;
     
+    private float _poopDebuffTime = 0f;
+    private float _stuntDebuffTime = 0f;
+
+
     private void Awake()
     {
         healthMax = _health;
         currentHealth = _health;
         velAttack = _velAttack;
-
-        if (!_playerStats)
-        {
-            _playerStats = FindObjectOfType<PlayerStats>();
-        }
+        damage = _damage;
     }
 
     private void Update()
     {
-        _debuffTime += Time.deltaTime;
-        
-        //the speed attack of the boss increment when hotdog hit him
-        if (_isStunt && _debuffTime <= _stuntTime)
+        // Debuff for vel attack increment (slow attac)
+        if (_isStunt)
         {
-            velAttack += (_velAttack * 0.1f);
+            _stuntDebuffTime += Time.deltaTime;
+
+            if (_stuntDebuffTime >= _stuntTime)
+            {
+                // Set to default values
+                velAttack = _velAttack;
+                _isStunt = false;
+                _stuntDebuffTime = 0f;
+            }
+        }
+
+        // Debuff for damage decrement 
+        if (_isPoop)
+        {
+            _poopDebuffTime += Time.deltaTime;
+
+            if (_poopDebuffTime >= _stuntTime)
+            {
+                // Set to default values
+                damage = _damage;
+                _isPoop = false;
+                _poopDebuffTime = 0f;
+            }
         }
         
-        //the boss damage decrement when a poop bullet hit him
-        if (_isPoop && _debuffTime <= _stuntTime)
+        _cdShoot += Time.deltaTime;
+        if (_cdShoot >= velAttack)
         {
-            damage *= 0.5f;
-            _isPoop = false;
+            _cdShoot = 0;
+            Shoot();
         }
+    }
+    
+    void Shoot()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         
-        //set to default values when the time of stunt is over
-        if (_debuffTime >= _stuntTime)
-        {
-            velAttack = _velAttack;
-            damage = _damage;
-        }
-        
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.velocity = -firePoint.up * bulletSpeed;
     }
 
-    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("DefaultBullet"))
         {
             currentHealth -= other.GetComponent<Bullet>().damage;
         } 
-        if(other.CompareTag("SpongeBullet"))
+        else if(other.CompareTag("SpongeBullet"))
         {
             currentHealth -= other.GetComponent<Bullet>().damage;
         }
-        if(other.CompareTag("HotDogBullet"))
+        else if(other.CompareTag("HotDogBullet"))
         {
-            _isStunt = true;
+            currentHealth -= other.GetComponent<Bullet>().damage;
+            //only apply debuff when _isStunt is false, this for not spam skills
+            if (!_isStunt)
+            {
+                _isStunt = true;
+                _stuntDebuffTime = 0f;
+
+                velAttack += (_velAttack * 0.4f);
+            }
         }   
-        if(other.CompareTag("PoopBullet"))
+        else if(other.CompareTag("PoopBullet"))
         {
-            _isPoop = true;
-        }   
-    }
+            currentHealth -= other.GetComponent<Bullet>().damage;
     
+            //only apply debuff when _isPoop is false, this for not spam skills
+            if (!_isPoop)
+            {
+                _isPoop = true;
+                _poopDebuffTime = 0f; 
+                damage *= 0.5f; 
+            }
+        }    
+    }
 }

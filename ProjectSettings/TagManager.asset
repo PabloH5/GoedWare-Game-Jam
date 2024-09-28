@@ -9,6 +9,8 @@ TagManager:
   - HotDogBullet
   - PoopBullet
   - SpongeBullet
+  - PooptBullet
+  - BossBullet
   layers:
   - Default
   - TransparentFX

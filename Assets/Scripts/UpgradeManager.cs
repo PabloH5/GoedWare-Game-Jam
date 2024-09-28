@@ -83,7 +83,7 @@ public class UpgradeManager : MonoBehaviour
     {
         if (_inventory)
         {
-            wood = _inventory.woodAmount; //substract wood of the player amount
+            wood = _inventory.woodAmount; //subtract wood of the player amount
         }
 
         //check the current upgrade lvl
