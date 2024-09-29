@@ -55,6 +55,11 @@ public class TreeController : MonoBehaviour
             // _lootAmount -= _playerStats.dropAmount * _lootMax;
             // _inventory.woodAmount += _playerStats.dropAmount * _lootMax;
         }
+
+        if (_health <= 0)
+        {
+            //! HERE LOGIC FOR DELETE-RESPAWN-HIDE THE TREE WHEN DON'T HAVE MORE WOOD 
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
