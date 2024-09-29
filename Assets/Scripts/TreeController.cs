@@ -15,6 +15,8 @@ public class TreeController : MonoBehaviour
     [SerializeField] private float _lootAmount;
     
     [SerializeField] private bool _isFarming;
+    [SerializeField] private Animator _playerAnimator;
+    [SerializeField] private Animator _treeAnimator;
 
     //Controllers
     private Inventory _inventory;
