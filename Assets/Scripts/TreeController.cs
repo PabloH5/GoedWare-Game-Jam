@@ -49,6 +49,8 @@ public class TreeController : MonoBehaviour
         if (_isFarming && _cdDamage >= _playerStats.velAttack)
         {
             Debug.Log(_cdDamage);
+            _playerAnimator.SetTrigger("Attack");
+            _treeAnimator.SetTrigger("Hit");
             _cdDamage = 0;
             _health -= _playerStats.strength;
             _inventory.woodAmount = _healthMax - _health;

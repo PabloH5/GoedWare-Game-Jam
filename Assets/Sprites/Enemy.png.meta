@@ -110,169 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: idle
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d1fb94777639e874794a219986686e67
-      internalID: -1874045003
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: idle1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 96
-        width: 32
+        width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc57292f60aa19d419602d759532618e
-      internalID: 106967693
+      spriteID: 237417a950bfe4340a7f2badbff211e0
+      internalID: -1106194564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: righ1
+      name: idle
       rect:
         serializedVersion: 2
         x: 64
         y: 96
-        width: 32
+        width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df9cd783b97045c4891afcfcafa209fe
-      internalID: -1685671008
+      spriteID: ae80881807df2624f825cb9dbdffef29
+      internalID: 1005416954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: righ2
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7ea163a1eb4972d41a2e0c70350ba1d3
-      internalID: 519082803
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack1
+      name: right
       rect:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 32
+        width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c989e89bebdd02d478d54e7d9b1ea782
-      internalID: -1225141264
+      spriteID: 6070602c2f786ce43be66a2d5e19aec1
+      internalID: 445957206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vertical
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2481e734a4c1aa54abcad157ce1d249f
-      internalID: -891487346
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: magic
+      name: left
       rect:
         serializedVersion: 2
         x: 64
         y: 64
-        width: 32
+        width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f0a3a9b1d8f9264a95cf66ce6122242
-      internalID: -428593425
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4fedd9d6b6198c34480dde58b837fd0e
-      internalID: 1686715152
+      spriteID: e6a014c5b22bcce429fa4c03fcdc4887
+      internalID: 2138850880
       vertices: []
       indices: 
       edges: []
@@ -281,166 +197,19 @@ TextureImporter:
       name: attack
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c2f442653e83cb54cad79ee8e297fa6d
-      internalID: 1500068061
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: up
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 04c27a49f2059b34ebdfaad7b1b3e416
-      internalID: 959391330
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: righdown
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c5b06ff1591a2d54b8f3d57235630a64
-      internalID: 268281413
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rightup
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ced824d63740294d98d9b53ab1e57d4
-      internalID: -1490862662
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: left2
-      rect:
-        serializedVersion: 2
         x: 0
-        y: 0
-        width: 32
+        y: 32
+        width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84f5d2955424fcc4794448cad593dba6
-      internalID: -1153014565
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: left1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f8bbe317cc5441b42a4e96520057700e
-      internalID: 373932525
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: leftdown
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: abd485668d1abdc4eaaa6c2cf8aa4a29
-      internalID: 1872976147
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: leftup
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fce3a0a8262d2014896defb7333f5c9b
-      internalID: -1413502014
+      spriteID: 58c6d410a6f54f74998277623ec37c16
+      internalID: -712724899
       vertices: []
       indices: 
       edges: []
@@ -456,22 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      attack: 1500068061
-      attack1: -1225141264
-      attack2: 1686715152
-      idle: -1874045003
-      idle1: 106967693
-      left1: 373932525
-      left2: -1153014565
-      leftdown: 1872976147
-      leftup: -1413502014
-      magic: -428593425
-      righ1: -1685671008
-      righ2: 519082803
-      righdown: 268281413
-      rightup: -1490862662
-      up: 959391330
-      vertical: -891487346
+      attack: -712724899
+      idle: 1005416954
+      idle1: -1106194564
+      left: 2138850880
+      right: 445957206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
