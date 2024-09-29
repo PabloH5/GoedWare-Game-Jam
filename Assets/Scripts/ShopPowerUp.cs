@@ -13,6 +13,7 @@ public class PowerUp
 
     public Button purchaseButton;
     public Button useButton;
+    public Text costTxt;
 }
 public class ShopPowerUp : MonoBehaviour
 {
@@ -23,7 +24,6 @@ public class ShopPowerUp : MonoBehaviour
     public PowerUp sponge;
     public PowerUp hotDog;
     public PowerUp poop;
-    public PowerUp drug;
     
     
 
@@ -99,10 +99,6 @@ public class ShopPowerUp : MonoBehaviour
     public void PurchasePoop()
     {
         PurchasePowerUp(poop);
-    }
-    public void PurchaseDrug()
-    {
-        PurchasePowerUp(drug);
     }
     
     public void ActivateDefault()

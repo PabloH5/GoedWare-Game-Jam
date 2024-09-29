@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Upgrade
@@ -16,6 +17,8 @@ public class Upgrade
     public float valueMultiplier = 1.1f; //Multiplier of value
 
     public int maxLevel = 5; // Max Lvl
+
+    public Text costTxt;
 
     public int GetCurrentCost()
     {
@@ -55,6 +58,15 @@ public class UpgradeManager : MonoBehaviour
             _inventory = FindObjectOfType<Inventory>();
         }
     }
+
+    private void Start()
+    {
+        healthUpgrade.costTxt.text  = healthUpgrade.baseCost.ToString();
+        velMoveUpgrade.costTxt.text  = velMoveUpgrade.baseCost.ToString();
+        strengthUpgrade.costTxt.text  = strengthUpgrade.baseCost.ToString();
+        velAttackUpgrade.costTxt.text  = velAttackUpgrade.baseCost.ToString();
+    }
+
     //Method for assign to button Health in UI
     public void PurchaseHealthUpgrade()
     {
@@ -104,6 +116,7 @@ public class UpgradeManager : MonoBehaviour
                 }
                 ApplyUpgrade(upgrade, upgradeName);
                 upgrade.level++;
+                upgrade.costTxt.text = currentCost.ToString();
                 Debug.Log($"U buy: {upgradeName} at lvl {upgrade.level}");
             
             }
@@ -113,7 +126,7 @@ public class UpgradeManager : MonoBehaviour
             
             }
         }
-
+        
         
     }
 
