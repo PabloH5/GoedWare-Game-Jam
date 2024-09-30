@@ -40,7 +40,6 @@ public class TreeController : MonoBehaviour
         {
             _inventory = FindObjectOfType<Inventory>();
         }
-        
     }
 
     private void Update()
@@ -48,12 +47,13 @@ public class TreeController : MonoBehaviour
         _cdDamage += Time.deltaTime;
         if (_isFarming && _cdDamage >= _playerStats.velAttack)
         {
-            Debug.Log(_cdDamage);
-            _playerAnimator.SetTrigger("Attack");
-            _treeAnimator.SetTrigger("Hit");
+            // Debug.Log(_cdDamage);
             _cdDamage = 0;
             _health -= _playerStats.strength;
             _inventory.woodAmount = _healthMax - _health;
+            _playerAnimator.SetTrigger("Attack");
+            _treeAnimator.SetTrigger("Hit");
+            
             // _lootAmount -= _playerStats.dropAmount * _lootMax;
             // _inventory.woodAmount += _playerStats.dropAmount * _lootMax;
         }

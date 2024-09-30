@@ -28,6 +28,11 @@ public class BossController : MonoBehaviour
     
     private float _poopDebuffTime = 0f;
     private float _stuntDebuffTime = 0f;
+    [Header("Movement Points")]
+    public Transform leftPoint;
+    public Transform rightPoint;
+    public float moveSpeed = 2f;
+    private bool movingRight = true;
 
 
     private void Awake()
@@ -74,8 +79,29 @@ public class BossController : MonoBehaviour
             _cdShoot = 0;
             Shoot();
         }
+        
+        MoveBetweenPoints();
     }
-    
+    void MoveBetweenPoints()
+    {
+        if (movingRight)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, rightPoint.position, moveSpeed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, rightPoint.position) < 0.1f)
+            {
+                movingRight = false;
+            }
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, leftPoint.position, moveSpeed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, leftPoint.position) < 0.1f)
+            {
+                movingRight = true;
+            }
+        }
+    }
+
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);

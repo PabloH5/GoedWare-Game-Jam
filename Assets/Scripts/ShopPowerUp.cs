@@ -54,6 +54,12 @@ public class ShopPowerUp : MonoBehaviour
         
     }
 
+    private void Start()
+    {
+        sponge.costTxt.text = sponge.cost.ToString();
+        hotDog.costTxt.text = hotDog.cost.ToString();
+        poop.costTxt.text = poop.cost.ToString();
+    }
 
     private void PurchasePowerUp(PowerUp powerUp)
     {
@@ -74,6 +80,7 @@ public class ShopPowerUp : MonoBehaviour
                 }
                 powerUp.purchaseButton.interactable = false;
                 powerUp.useButton.interactable = true;
+                powerUp.costTxt.text = currentCost.ToString();
                 Debug.Log($"U buy: {powerUp.name}");
                 _powerUpCounter++;
 
