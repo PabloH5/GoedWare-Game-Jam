@@ -11,12 +11,12 @@ public class Upgrade
     public int baseCost;
     public float baseIncrementValue;
 
-    public int level = 0; //current level
+    public int level = 0; // Nivel actual
 
-    public float costMultiplier = 1.2f; //multiplier of cost
-    public float valueMultiplier = 1.1f; //Multiplier of value
+    public float costMultiplier = 1.2f; // Multiplicador del costo
+    public float valueMultiplier = 1.1f; // Multiplicador del valor
 
-    public int maxLevel = 5; // Max Lvl
+    public int maxLevel = 5; // Nivel máximo
 
     public Text costTxt;
 
@@ -42,67 +42,67 @@ public class UpgradeManager : MonoBehaviour
     public Upgrade strengthUpgrade;
     public Upgrade velAttackUpgrade;
 
-    //Controllers
+    // Controladores
     private PlayerStats _playerStats;
     private Inventory _inventory;
 
     private void Awake()
     {
-        //find and assing controllers
-        if (FindObjectOfType<PlayerStats>())
+        // Encontrar y asignar controladores
+        _playerStats = FindObjectOfType<PlayerStats>();
+        if (_playerStats == null)
         {
-            _playerStats = FindObjectOfType<PlayerStats>();
+            Debug.LogError("No se encontró un componente PlayerStats en la escena.");
         }
-        if (FindObjectOfType<Inventory>())
+
+        _inventory = FindObjectOfType<Inventory>();
+        if (_inventory == null)
         {
-            _inventory = FindObjectOfType<Inventory>();
+            Debug.LogError("No se encontró un componente Inventory en la escena.");
         }
     }
 
     private void Start()
     {
-        healthUpgrade.costTxt.text  = healthUpgrade.baseCost.ToString();
-        velMoveUpgrade.costTxt.text  = velMoveUpgrade.baseCost.ToString();
-        strengthUpgrade.costTxt.text  = strengthUpgrade.baseCost.ToString();
-        velAttackUpgrade.costTxt.text  = velAttackUpgrade.baseCost.ToString();
+        healthUpgrade.costTxt.text = healthUpgrade.GetCurrentCost().ToString();
+        velMoveUpgrade.costTxt.text = velMoveUpgrade.GetCurrentCost().ToString();
+        strengthUpgrade.costTxt.text = strengthUpgrade.GetCurrentCost().ToString();
+        velAttackUpgrade.costTxt.text = velAttackUpgrade.GetCurrentCost().ToString();
     }
 
-    //Method for assign to button Health in UI
+    // Métodos para asignar a los botones en la UI
     public void PurchaseHealthUpgrade()
     {
         PurchaseUpgradeSpecific(healthUpgrade, "Health");
     }
 
-    //Method for assign to button VelMove in UI
     public void PurchaseVelMoveUpgrade()
     {
         PurchaseUpgradeSpecific(velMoveUpgrade, "Velocity");
     }
-    
-    //Method for assign to button Strength in UI
+
     public void PurchaseStrengthUpgrade()
     {
         PurchaseUpgradeSpecific(strengthUpgrade, "Strength");
     }
-    
-    //Method for assign to button VelAttack in UI
+
     public void PurchaseVelAttackUpgrade()
     {
         PurchaseUpgradeSpecific(velAttackUpgrade, "Attack Speed");
     }
-    // Method for purchase general upgrades, where the parameters necessary are type of Upgrade and the name
+
+    // Método general para comprar mejoras
     private void PurchaseUpgradeSpecific(Upgrade upgrade, string upgradeName)
     {
         if (_inventory)
         {
-            wood = _inventory.woodAmount; //subtract wood of the player amount
+            wood = _inventory.woodAmount; // Obtener la cantidad actual de madera
         }
 
-        //check the current upgrade lvl
-        if (upgrade.level >= upgrade.maxLevel) 
+        // Verificar el nivel actual de la mejora
+        if (upgrade.level >= upgrade.maxLevel)
         {
-            Debug.Log($"Reached the top level of upgrade: {upgradeName}.");
-            
+            Debug.Log($"Has alcanzado el nivel máximo de la mejora: {upgradeName}.");
         }
         else
         {
@@ -114,25 +114,30 @@ public class UpgradeManager : MonoBehaviour
                 {
                     _inventory.woodAmount = wood;
                 }
-                ApplyUpgrade(upgrade, upgradeName);
+
+                // Incrementar el nivel antes de aplicar la mejora
                 upgrade.level++;
-                upgrade.costTxt.text = currentCost.ToString();
-                Debug.Log($"U buy: {upgradeName} at lvl {upgrade.level}");
-            
+
+                // Aplicar la mejora utilizando el nivel actualizado
+                ApplyUpgrade(upgrade, upgradeName);
+
+                // Obtener el nuevo costo después de incrementar el nivel
+                int newCost = upgrade.GetCurrentCost();
+                upgrade.costTxt.text = newCost.ToString();
+
+                Debug.Log($"Has comprado: {upgradeName} al nivel {upgrade.level}");
             }
             else
             {
-                Debug.Log("Don't have enough wood to buy this upgrade.");
-            
+                Debug.Log("No tienes suficiente madera para comprar esta mejora.");
             }
         }
-        
-        
     }
 
-    // Method for apply and update the purchased upgrade
+    // Método para aplicar la mejora
     private void ApplyUpgrade(Upgrade upgrade, string upgradeName)
     {
+        // Obtener el valor de incremento basado en el nivel actual
         float incrementValue = upgrade.GetCurrentIncrementValue();
 
         switch (upgradeName)
@@ -150,8 +155,8 @@ public class UpgradeManager : MonoBehaviour
                 _playerStats.VelAttackUpgrade(incrementValue);
                 break;
             default:
-                Debug.LogWarning("Unknwoledge upgrade.");
+                Debug.LogWarning("Mejora desconocida.");
                 break;
-        }
-    }
+}
+}
 }

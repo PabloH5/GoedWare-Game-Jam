@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -14,6 +15,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _velMove;
     [SerializeField] private float _strength;
     [SerializeField] private float _velAttack;
+    [SerializeField] private HealthBar _healthBar;
+    
 
     private void Awake()
     {
@@ -23,7 +26,15 @@ public class PlayerStats : MonoBehaviour
         strength = _strength;
         velAttack = _velAttack;
     }
-    
+
+    private void Update()
+    {
+        if (currentHealth < 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     //Method for heal the player
     public void Heal(float healValue)
     {
@@ -46,5 +57,14 @@ public class PlayerStats : MonoBehaviour
     public void VelAttackUpgrade(float incrementValue)
     {
         velAttack = velAttack * incrementValue;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("BossBullet"))
+        {
+            currentHealth -= other.GetComponent<Bullet>().damage;
+            _healthBar.UpdateHealthbar(healthMax, currentHealth);
+        } 
     }
 }

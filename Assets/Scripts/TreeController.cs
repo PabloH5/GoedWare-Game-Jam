@@ -50,17 +50,15 @@ public class TreeController : MonoBehaviour
             // Debug.Log(_cdDamage);
             _cdDamage = 0;
             _health -= _playerStats.strength;
-            _inventory.woodAmount = _healthMax - _health;
+            _inventory.woodAmount +=  _playerStats.strength;
             _playerAnimator.SetTrigger("Attack");
             _treeAnimator.SetTrigger("Hit");
             
-            // _lootAmount -= _playerStats.dropAmount * _lootMax;
-            // _inventory.woodAmount += _playerStats.dropAmount * _lootMax;
         }
 
         if (_health <= 0)
         {
-            //! HERE LOGIC FOR DELETE-RESPAWN-HIDE THE TREE WHEN DON'T HAVE MORE WOOD 
+            Destroy(this.gameObject);
         }
     }
 

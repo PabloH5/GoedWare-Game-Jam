@@ -14,6 +14,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private float _health;
     [SerializeField] private float _velAttack;
     [SerializeField] private float _damage;
+    [SerializeField] private HealthBar _healthbar;
     
     [Header("Shoot")]
     public GameObject bulletPrefab; 
@@ -81,6 +82,12 @@ public class BossController : MonoBehaviour
         }
         
         MoveBetweenPoints();
+
+        if (currentHealth < 0)
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
     void MoveBetweenPoints()
     {
@@ -115,6 +122,7 @@ public class BossController : MonoBehaviour
         if(other.CompareTag("DefaultBullet"))
         {
             currentHealth -= other.GetComponent<Bullet>().damage;
+            _healthbar.UpdateHealthbar(healthMax, currentHealth);
         } 
         else if(other.CompareTag("SpongeBullet"))
         {
