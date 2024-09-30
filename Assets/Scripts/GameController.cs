@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
     {
         if (_playerInventory)
         {
-            _woodTxt.text = "x" + _playerInventory.woodAmount;
+            _woodTxt.text = "x" + Mathf.FloorToInt(_playerInventory.woodAmount);
         }
     }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public class BossController : MonoBehaviour
 {
     [Header("Boss Current Stats")]
@@ -15,6 +16,8 @@ public class BossController : MonoBehaviour
     [SerializeField] private float _velAttack;
     [SerializeField] private float _damage;
     [SerializeField] private HealthBar _healthbar;
+    [SerializeField] private StatusGame _statusgame;
+    [SerializeField] private Text _healthText;
     
     [Header("Shoot")]
     public GameObject bulletPrefab; 
@@ -86,7 +89,9 @@ public class BossController : MonoBehaviour
         if (currentHealth < 0)
         {
             Destroy(this.gameObject);
+            _statusgame.Win();
         }
+        _healthText.text = Mathf.FloorToInt(currentHealth).ToString();
         
     }
     void MoveBetweenPoints()
