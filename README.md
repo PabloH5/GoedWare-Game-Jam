@@ -8,8 +8,8 @@
  + SebasEsc6 - Sebastian Escobar Tunubala
 
 ## Credits
- + World assets:
- + UI assets
+ + **World assets**:  [Sprout Lands - UI Pack by Cup Nooble](https://pop-shop-packs.itch.io/cats-pixel-asset-pack)
+ + **UI assets**: [Sprout Lands - UI Pack by Cup Nooble](https://cupnooble.itch.io/sprout-lands-ui-pack)
 
- + Character and icons: SebasEsc6
- + Programming and Game Desing: Pablito.h5
+ + **Characters and icons**: SebasEsc6
+ + **Programming and Game Desing**: Pablito.h5
