@@ -7,7 +7,7 @@ public class SceneController : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene("PabloScene");
+        SceneManager.LoadScene("MainScene");
     }
 
     public void Menu()
